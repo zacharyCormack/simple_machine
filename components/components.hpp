@@ -1,9 +1,9 @@
 #pragma once
 #include "component.hpp"
-#include "component_instance.hpp"
-#include "lift.hpp"
-#include "pivot.hpp"
-#include "pulley.hpp"
-#include "rope.hpp"
-#include "slant.hpp"
-#include "wheel.hpp"
+#include "lift.cpp"
+#include "pivot.cpp"
+#include "pulley.cpp"
+#include "rope.cpp"
+#include "slant.cpp"
+
+component lift, pivot, pulley, rope, slant;
