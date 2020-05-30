@@ -2,7 +2,7 @@
 #pragma once
 
 struct line {
-	int x[2];
-	int y[2];
-	int z[2];
+	double x[2];
+	double y[2];
+	double z[2];
 };

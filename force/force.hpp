@@ -2,13 +2,15 @@
 #include "component.hpp"
 #include "ball.hpp"
 #include "angle.hpp"
+#include <vector>
 
 class force {
 	double strength;
-	double*(*calc_force)(angle direction, int coefficient);
-	component::component_type* acts_on;
+	double*(*calc_force)(angle, double);
+	std::vector<component::instance> acts_on;
+	std::vector<double> coefficients_of_actors;
 public:
-	int exert(ball target, int actor_ID);
-	void bind_object(component::component_type actor, component actor_type, int* actor_ID, int coefficient);//0 on success
-	force(double*(*equation)(angle, int), double str);
+	double* exert(ball, int);
+	void bind_object(component::instance*, component, short*, double);//0 on success
+	force(double*(*equation)(angle, double), double);
 };

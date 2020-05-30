@@ -4,7 +4,7 @@ class shader {
 private:
 	char* GLSL_code;
 public:
-	int* get_GL_shader();
-	shader(char* code);
+	short* get_GL_shader();
+	shader(char*);
 	~shader();
 };

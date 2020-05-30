@@ -4,6 +4,6 @@
 
 struct prism {
 	line core;
-	int thickness[2];
+	double thickness[2];
 	struct angle rotation;
 };

@@ -4,21 +4,25 @@
 #include "force.hpp"
 
 class component {
-	program drawer;
-	void(*receive_force)(int);
 public:
-	class component_type {
-		int variation_val;
+	class instance {
+		short variation_val;
+		short ID;
 		force* acting_forces;
-		int ID;
+		void accelerate(double*);
 	public:
 		component* type;
 		struct prism core;
-		void act_on(ball target);
-		component_type(prism base, int variation, component component_type);
+		line velocity;
+		void act_on(ball);
+		void iterate();
+		instance(prism, short, component*);
 	};
-	int* coefficients;
+	double* coefficients;
 	force* forces;
-	component_type make_instance(prism base, int variation);
-	component(program draw, force* forces_to_bind, int* coefficients_to_bind, void(*react)(int));
+	instance make_instance(prism, short);
+	component(program, force*, double*, void(*)(instance*));
+private:
+	void(*move)(instance*);
+	program drawer;
 };

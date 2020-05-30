@@ -2,30 +2,41 @@
 #include "prism.hpp"
 #include "program.hpp"
 
-component::component(program draw, force* forces_to_bind, int* coefficients_to_bind, void(*react)(int)) {
-    forces = forces_to_bind;
-    coefficients = coefficients_to_bind;
-    drawer = draw;
-    receive_force = react;
+component::component(program draw, force* forces_to_bind, double* coefficients_to_bind, void(*react)(component::instance*)) {
+	forces = forces_to_bind;
+	coefficients = coefficients_to_bind;
+	drawer = draw;
+	move = react;
 }
 
-component::component_type component::make_instance(prism base, int variation) {
-    component_type instance(base, variation, forces, this);
-    return instance;
+component::instance component::make_instance(prism base, short variation) {
+	instance new_component(base, variation, this);
+	return new_component;
 }
 
-component::component_type::component_type(prism base, int variation, component component_type) {
+component::instance::instance(prism base, short variation, component* instance_of) {
 	core = base;
 	variation_val = variation;
-    type = &component_type;
-    acting_forces = type->forces;
-    for(int i = 0; i < sizeof(type->forces)/sizeof(force); i++) {
-        type->forces[i].bind_object(*this, *type, &ID, type->coefficients[i]);
-    }
+	type = instance_of;
+	acting_forces = type->forces;
+	velocity.x[0] = (core.core.x[0] + core.core.x[1]) / 2;
+	velocity.y[0] = (core.core.y[0] + core.core.y[1]) / 2;
+	velocity.z[0] = (core.core.z[0] + core.core.z[1]) / 2;
+	velocity.x[1] = 0;
+	velocity.y[1] = 0;
+	velocity.z[1] = 0;
+	for(short i = 0; i < sizeof(type->forces)/sizeof(force); i++) {
+		type->forces[i].bind_object(this, *type, &ID, type->coefficients[i]);
+	}
 }
 
-void component::component_type::act_on(ball target) {
-    for(int i = 0; i < sizeof(acting_forces) / sizeof(force); i++) {
-         (type->receive_force)(acting_forces[i].exert(target, ID));
-    }
+void component::instance::act_on(ball target) {
+	for(short i = 0; i < sizeof(acting_forces) / sizeof(force); i++) {
+		accelerate(acting_forces[i].exert(target, ID));
+	}
+}
+
+void component::instance::iterate() {
+	type->move(this);
+    /* draw component */
 }

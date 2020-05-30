@@ -2,10 +2,10 @@
 #include "shader.hpp"
 
 class program {
-    int GL_ID;
-    void bind(float* points);
+	short GL_ID;
+	void bind(float* points);
 public:
-    void draw(int GL_type,  int start, int end, float* points);
+	void draw(short GL_type,  short start, short end, float* points);
 	program(shader* shaders);
 	~program();
 };
