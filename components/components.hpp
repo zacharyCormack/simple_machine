@@ -1,5 +1,6 @@
 #pragma once
 #include "component.hpp"
+#include "ball.cpp"
 #include "lift.cpp"
 #include "motor.cpp"
 #include "pivot.cpp"
@@ -7,4 +8,4 @@
 #include "rope.cpp"
 #include "slant.cpp"
 
-component lift, pivot, pulley, rope, slant;
+component ball, lift, motor, pivot, pulley, rope, slant;

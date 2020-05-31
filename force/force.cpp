@@ -1,18 +1,22 @@
 #include "force.hpp"
-#include <cmath>
+
+std::vector<force*> force::forces_ptr = {};
 
 force::force(double*(*equation)(angle, double), double str) {
 	calc_force = equation;
 	strength = str;
+	this_force = forces_ptr.size();
+	forces_ptr.push_back(this);
 }
 
-double* force::exert(ball target, int actor_ID) {
-	double* force_exerted = (*calc_force)(acts_on[actor_ID].core.rotation, coefficients_of_actors[actor_ID]);
-	target.accelerate(force_exerted);
-	return cbrt(force_exerted[0]*force_exerted[0] + force_exerted[1]*force_exerted[1] + force_exerted[2]*force_exerted[2]);
+double* force::exert(component::instance actor_a, component::instance actor_b) {
+	double* force_exerted = (*calc_force)(measure(actor_a.core.core, actor_b.core.core), actor_a.type->coefficients[this_force]);
+	actor_a.accelerate(line_dist(vec_mult(uvec(actor_a.core.core), force_exerted)));
+	actor_b.accelerate(line_dist(vec_mult(uvec(actor_b.core.core), force_exerted)));
 }
 
-void force::bind_object(component::instance* actor, component actor_type, short* actor_ID, double coefficient) {
-	acts_on.push_back(*actor);
-	coefficients_of_actors.push_back(coefficient);
+force::~force() {
+	forces_ptr[forces_ptr.size()-1]->this_force = this_force;
+	forces_ptr[this_force] = forces_ptr[forces_ptr.size()-1];
+	forces_ptr.pop_back();
 }

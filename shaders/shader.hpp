@@ -5,6 +5,6 @@ private:
 	char* GLSL_code;
 public:
 	short* get_GL_shader();
-	shader(char*);
+	shader(const char*);
 	~shader();
 };

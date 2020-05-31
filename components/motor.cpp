@@ -2,7 +2,6 @@
 #include "forces.hpp"
 #include "shaders.hpp"
 
-force forces[] = {input};
-double coefficients[] = {1.0};
-void move(double) {/* do nothing */};
-component lift(draw_rope, forces, coefficients, &move);
+double coefficients[] = {0.0, 0.0, 0.0, 0.0, 1.0};
+void move(component::instance* object) {/* do nothing */};
+component lift(draw_motor, coefficients, &move);
