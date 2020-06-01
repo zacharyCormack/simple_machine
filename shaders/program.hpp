@@ -1,12 +1,12 @@
 #pragma once
-#include "shader.hpp"
+#include "Shader.hpp"
 
-class program {
-	short GL_ID;
+class Program {
 	void bind(float* points);
 	void activate();
+	int type;
+	int ID;
 public:
-	void (*draw)(int GL_type,  short start, short end, float* points);
-	program(shader* shaders);
-	~program();
+	void draw(float*);
+	Program(Shader*, int);
 };

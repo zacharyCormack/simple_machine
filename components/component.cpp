@@ -1,22 +1,22 @@
-#include "component.hpp"
+#include "Component.hpp"
 #include "prism.hpp"
-#include "program.hpp"
+#include "Program.hpp"
 #include "forces.hpp"
-component::component(program draw, double coefficients_to_bind[5], void(*react)(component::instance*)) {
+Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(Component::Instance*)) {
 	coefficients = coefficients_to_bind;
 	drawer = &draw;
 	move = react;
 }
 
-component::instance component::make_instance(prism base, short variation) {
-	instance new_component(base, variation, this);
-	return new_component;
+Component::Instance Component::make_Instance(prism base, short variation) {
+	Instance new_Component(base, variation, this);
+	return new_Component;
 }
 
-component::instance::instance(prism base, short variation, component* instance_of) {
+Component::Instance::Instance(prism base, short variation, Component* Instance_of) {
 	core = base;
 	variation_val = variation;
-	type = instance_of;
+	type = Instance_of;
 	velocity.x[0] = (core.core.x[0] + core.core.x[1]) / 2;
 	velocity.y[0] = (core.core.y[0] + core.core.y[1]) / 2;
 	velocity.z[0] = (core.core.z[0] + core.core.z[1]) / 2;
@@ -25,15 +25,15 @@ component::instance::instance(prism base, short variation, component* instance_o
 	velocity.z[1] = 0;
 }
 
-void component::instance::accelerate(double* delta_v) {
+void Component::Instance::accelerate(double* delta_v) {
     velocity.x[1] += delta_v[0];
     velocity.y[1] += delta_v[1];
     velocity.z[1] += delta_v[2];
 }
 
-void component::instance::iterate() {
+void Component::Instance::iterate() {
 	type->move(this);
-	component_draw(this, type->drawer->draw);
+	Component_draw(this, type->drawer->draw);
 }
 
-force* component::forces = (force []){friction, gravity, normal, tension, input};
+Force* Component::forces = (Force []){friction, gravity, normal, tension, input};

@@ -1,17 +1,17 @@
 #pragma once
-#include "component.hpp"
+#include "Component.hpp"
 #include "angle.hpp"
 #include "functions.hpp"
 #include <vector>
 
-class force {
+class Force {
 	double strength;
-	double*(*calc_force)(angle, double);
-	static std::vector<force*> forces_ptr;
-	int this_force;
+	double*(*calc_Force)(angle, double);
+	static std::vector<Force*> forces_ptr;
+	int this_Force;
 public:
-	double* exert(component::instance, component::instance);
-	void bind_object(component::instance*, component, short*, double);
-	force(double*(*equation)(angle, double), double);
-	~force();
+	double* exert(Component::Instance, Component::Instance);
+	void bind_object(Component::Instance*, Component, short*, double);
+	Force(double*(*equation)(angle, double), double);
+	~Force();
 };

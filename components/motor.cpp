@@ -1,7 +1,7 @@
-#include "component.hpp"
+#include "Component.hpp"
 #include "forces.hpp"
-#include "shaders.hpp"
+#include "Shaders.hpp"
 
 double coefficients[] = {0.0, 0.0, 0.0, 0.0, 1.0};
-void move(component::instance* object) {/* do nothing */};
-component lift(draw_motor, coefficients, &move);
+void move(Component::Instance* object) {/* do nothing */};
+Component lift(draw_motor, coefficients, &move);

@@ -1,10 +1,9 @@
 #pragma once
 
-class shader {
+class Shader {
 private:
 	char* GLSL_code;
 public:
-	short* get_GL_shader();
-	shader(const char*);
-	~shader();
+	unsigned get_GL_shader();
+	Shader(const char*);
 };

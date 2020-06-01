@@ -1,25 +1,25 @@
 #pragma once
 #include "prism.hpp"
-#include "program.hpp"
-#include "force.hpp"
+#include "Program.hpp"
+#include "Force.hpp"
 
-class component {
+class Component {
 public:
-	class instance {
+	class Instance {
 		short variation_val;
 	public:
-		component* type;
+		Component* type;
 		prism core;
 		line velocity;
 		void iterate();
 		void accelerate(double*);
-		instance(prism, short, component*);
+		Instance(prism, short, Component*);
 	};
 	double* coefficients;
-	static force* forces;
-	instance make_instance(prism, short);
-	component(program, double*, void(*)(instance*));
+	static Force* forces;
+	Instance make_Instance(prism, short);
+	Component(Program, double*, void(*)(Instance*));
 private:
-	void(*move)(instance*);
-	program* drawer;
+	void(*move)(Instance*);
+	Program* drawer;
 };

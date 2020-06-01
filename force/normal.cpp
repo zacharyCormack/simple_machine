@@ -1,9 +1,9 @@
-#include "force.hpp"
+#include "Force.hpp"
 
 double* act(angle ang, double coeffictient) {
-    double* force_vec;
-    /* calculate force */
-    return force_vec;
+    double* Force_vec;
+    /* calculate Force */
+    return Force_vec;
 };
 
-force normal(act, 1);
+Force normal(act, 1);

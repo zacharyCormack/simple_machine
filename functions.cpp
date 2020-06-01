@@ -1,6 +1,6 @@
 #include "functions.hpp"
 
-void checkforce(component::instance item_a, component::instance item_b, force potential_force) {
+void checkForce(Component::Instance item_a, Component::Instance item_b, Force potential_Force) {
 
 }
 
@@ -8,7 +8,7 @@ angle measure(line a, line b) {
 	
 }
 
-void component_draw(component::instance*, void(*)(int, short, short, float*)) {
+void Component_draw(Component::Instance*, void(*)(int, short, short, float*)) {
 
 }
 

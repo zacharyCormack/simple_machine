@@ -1,9 +1,9 @@
-#include "component.hpp"
-#include "force.hpp"
+#include "Component.hpp"
+#include "Force.hpp"
 #include "line.hpp"
-void checkforce(component::instance, component::instance, force);
+void checkForce(Component::Instance, Component::Instance, Force);
 angle measure(line, line);
-void component_draw(component::instance*, void(*)(int, short, short, float*));
+void Component_draw(Component::Instance*, void(*)(int, short, short, float*));
 line uvec(line);
 line vec_mult(line, double*);
 double* line_dist(line);
