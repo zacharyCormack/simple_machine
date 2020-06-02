@@ -9,7 +9,7 @@
 #include "prism_geometry.cpp"
 #include "rope_geometry.cpp"
 
-Shader ball_shader, fragment_shader, lift_shader, motor_shader, perspective_shader, prism_shader, rope_shader;
+//Shader ball_shader, fragment_shader, lift_shader, motor_shader, perspective_shader, prism_shader, rope_shader;
 Shader rope_shaders[3] = {perspective_shader, rope_shader, fragment_shader};
 Program draw_rope(rope_shaders, GL_TRIANGLES);
 Shader motor_shaders[3] = {perspective_shader, motor_shader, fragment_shader};

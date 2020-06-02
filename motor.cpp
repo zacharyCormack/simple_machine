@@ -2,6 +2,6 @@
 #include "forces.hpp"
 #include "shaders.hpp"
 
-double coefficients[] = {0.0, 0.0, 0.0, 0.0, 1.0};
+double motor_coefficients[] = {0.0, 0.0, 0.0, 0.0, 1.0};
 void move(Component::Instance* object) {/* do nothing */};
-Component lift(draw_motor, coefficients, &move);
+Component motor(draw_motor, motor_coefficients, &move);

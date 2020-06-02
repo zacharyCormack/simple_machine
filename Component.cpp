@@ -1,16 +1,9 @@
 #include "Component.hpp"
-#include "prism.hpp"
-#include "Program.hpp"
-#include "forces.hpp"
+#include "functions.hpp"
 Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(Component::Instance*)) {
 	coefficients = coefficients_to_bind;
 	drawer = &draw;
 	move = react;
-}
-
-Component::Instance Component::make_Instance(prism base, short variation) {
-	Instance new_Component(base, variation, this);
-	return new_Component;
 }
 
 Component::Instance::Instance(prism base, short variation, Component* Instance_of) {
@@ -32,8 +25,6 @@ void Component::Instance::accelerate(double* delta_v) {
 }
 
 void Component::Instance::iterate() {
-	type->move(this);
+	(*(type->move))(this);
 	component_draw(this, type->drawer);
 }
-
-Force* Component::forces = (Force []){friction, gravity, normal, tension, input};

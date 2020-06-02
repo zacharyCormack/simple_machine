@@ -1,6 +1,5 @@
 #include "Force.hpp"
-
-std::vector<Force*> Force::forces_ptr = {};
+#include "functions.hpp"
 
 Force::Force(double*(*equation)(angle, double), double str) {
 	calc_Force = equation;

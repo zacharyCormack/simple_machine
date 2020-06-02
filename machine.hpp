@@ -1,7 +1,7 @@
 #pragma once
 #include "Force.hpp"
 #include "Program.hpp"
-#include "components/Component.hpp"
+#include "Component.hpp"
 #include <vector>
 
 class Machine {

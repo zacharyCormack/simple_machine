@@ -1,9 +1,5 @@
 #include "functions.hpp"
 
-void checkForce(Component::Instance item_a, Component::Instance item_b, Force potential_Force) {
-
-}
-
 angle measure(line a, line b) {
 	
 }

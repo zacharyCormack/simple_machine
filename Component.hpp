@@ -1,7 +1,6 @@
 #pragma once
 #include "prism.hpp"
 #include "Program.hpp"
-#include "Force.hpp"
 
 class Component {
 public:
@@ -16,8 +15,6 @@ public:
 		Instance(prism, short, Component*);
 	};
 	double* coefficients;
-	static Force* forces;
-	Instance make_Instance(prism, short);
 	Component(Program, double*, void(*)(Instance*));
 private:
 	void(*move)(Instance*);

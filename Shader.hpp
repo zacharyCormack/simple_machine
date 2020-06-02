@@ -1,6 +1,5 @@
 #pragma once
 #include <OpenGL/OpenGL.h>
-#include "glad.h"
 #include <GLFW/glfw3.h>
 
 class Shader {

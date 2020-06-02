@@ -1,9 +1,8 @@
-#include "components/Component.hpp"
-#include "Force.hpp"
+#pragma once
 #include "line.hpp"
-void checkForce(Component::Instance, Component::Instance, Force);
+#include "Component.hpp"
 angle measure(line, line);
-void component_draw(Component::Instance*, Program*);
 line uvec(line);
 line vec_mult(line, double*);
 double* line_dist(line);
+void component_draw(Component::Instance*, Program*);

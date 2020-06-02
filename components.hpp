@@ -8,4 +8,4 @@
 #include "rope.cpp"
 #include "slant.cpp"
 
-Component ball, lift, motor, pivot, pulley, rope, slant;
+//Component ball, lift, motor, pivot, pulley, rope, slant;

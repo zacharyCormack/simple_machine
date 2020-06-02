@@ -1,7 +1,6 @@
 #pragma once
-#include "components/Component.hpp"
+#include "Component.hpp"
 #include "angle.hpp"
-#include "functions.hpp"
 #include <vector>
 
 class Force {
