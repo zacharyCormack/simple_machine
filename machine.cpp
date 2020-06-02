@@ -1,21 +1,21 @@
 #include "Machine.hpp"
 
-Machine::Machine() {
+Machine::Machine(double start_perspective[3]) {
 
 }
 
-Machine::bind() {
-    
+void Machine::bind(Component::Instance) {
+	
 }
 
-Machine::iterate() {
-
-}
-
-Machine::draw() {
+void Machine::iterate() {
 
 }
 
-Machine::pan() {
-    
+void Machine::draw() {
+
+}
+
+void Machine::pan(double new_perspective[3]) {
+	
 }

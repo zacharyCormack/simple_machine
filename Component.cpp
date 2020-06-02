@@ -26,14 +26,14 @@ Component::Instance::Instance(prism base, short variation, Component* Instance_o
 }
 
 void Component::Instance::accelerate(double* delta_v) {
-    velocity.x[1] += delta_v[0];
-    velocity.y[1] += delta_v[1];
-    velocity.z[1] += delta_v[2];
+	velocity.x[1] += delta_v[0];
+	velocity.y[1] += delta_v[1];
+	velocity.z[1] += delta_v[2];
 }
 
 void Component::Instance::iterate() {
 	type->move(this);
-	Component_draw(this, type->drawer->draw);
+	component_draw(this, type->drawer);
 }
 
 Force* Component::forces = (Force []){friction, gravity, normal, tension, input};

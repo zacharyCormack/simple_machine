@@ -8,7 +8,7 @@ angle measure(line a, line b) {
 	
 }
 
-void Component_draw(Component::Instance*, void(*)(int, short, short, float*)) {
+void component_draw(Component::Instance*, Program*) {
 
 }
 
@@ -25,5 +25,5 @@ line vec_mult(line vec, double* mag) {
 }
 
 double* line_dist(line dist) {
-    
+	
 }
