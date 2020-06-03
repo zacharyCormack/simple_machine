@@ -1,9 +1,13 @@
 #include "Component.hpp"
 #include "functions.hpp"
-Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(Component::Instance*)) {
+Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(Component::Instance*), void(*bind_vertices)(prism), unsigned short* indices) {
 	coefficients = coefficients_to_bind;
 	drawer = &draw;
 	move = react;
+	bind_points = bind_vertices;
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 13, (void*)12);
 }
 
 Component::Instance::Instance(prism base, short variation, Component* Instance_of) {
@@ -16,6 +20,8 @@ Component::Instance::Instance(prism base, short variation, Component* Instance_o
 	velocity.x[1] = 0;
 	velocity.y[1] = 0;
 	velocity.z[1] = 0;
+	glGenBuffers(1, &VBO);
+	glGenBuffers(1, &VAO);
 }
 
 void Component::Instance::accelerate(double* delta_v) {
@@ -26,5 +32,6 @@ void Component::Instance::accelerate(double* delta_v) {
 
 void Component::Instance::iterate() {
 	(*(type->move))(this);
-	component_draw(this, type->drawer);
+	(*(type->bind_points))(core);
+	type->drawer->draw(VAO, VBO, type->EBO);
 }

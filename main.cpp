@@ -2,15 +2,7 @@
 #include "components.hpp"
 #include "shaders.hpp"
 #include "Machine.hpp"
-
-void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
-	glViewport(0, 0, width, height);
-}
-void processInput(GLFWwindow *window) {
-	if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-		glfwSetWindowShouldClose(window, true);
-	}
-}
+#include "functions.hpp"
 
 int main() {
 	/* initiate OpenGL */
@@ -21,7 +13,7 @@ int main() {
 	#ifdef __APPLE__
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	#endif
-	GLFWwindow* window = glfwCreateWindow(800, 600, "PATTERN", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(800, 600, "MACHINE", NULL, NULL);
 	if (window == NULL)
 	{
 		glfwTerminate();
@@ -39,6 +31,9 @@ int main() {
 		/* potentially, pan */
 		machine.draw();
 		/* check if window should close */
-		window_should_close = true;//to stop an endless repeat
+		glfwSwapBuffers(window);
+		glfwPollEvents();
 	}
+	glfwTerminate();
+	return 0;
 }

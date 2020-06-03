@@ -7,14 +7,8 @@ Program::Program(Shader* shaders, int draw_type) {
 	ID = *program_ID;
 }
 
-void Program::draw(float* points) {
-	bind(points);
-	/* do OpenGL stuff */
-}
-
-void Program::bind(float* points) {
-	unsigned VAO, VBO, EBO;
-	/* do OpenGL stuff */
+void Program::draw(unsigned VAO, unsigned VBO, unsigned EBO) {
+	glBindBuffer(GL_ARRAY_BUFFER, VBO);
 }
 
 void Program::activate() {
