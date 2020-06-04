@@ -2,9 +2,12 @@
 
 Program::Program(Shader* shaders, int draw_type) {
 	type = draw_type;
-	unsigned* program_ID;
-	/* do OpenGL stuff */
-	ID = *program_ID;
+	unsigned program_ID = glCreateProgram();
+	for(unsigned short i = 0; i < sizeof(shaders)/sizeof(Shader); i++) {
+		glAttachShader(program_ID, shaders[i].get_GL_shader());
+	}
+	glLinkProgram(program_ID);
+	ID = program_ID;
 }
 
 void Program::draw(unsigned VAO, unsigned VBO, unsigned EBO) {
@@ -12,5 +15,5 @@ void Program::draw(unsigned VAO, unsigned VBO, unsigned EBO) {
 }
 
 void Program::activate() {
-	/* do OpenGL stuff */
+	glUseProgram(ID);
 }

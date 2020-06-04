@@ -5,4 +5,4 @@ const char* ball_shader_text = "#version 330 core\n"
 " \n"
 "}\0";
 
-Shader ball_shader(ball_shader_text);
+Shader ball_shader(ball_shader_text, 0x8DD9);

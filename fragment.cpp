@@ -5,4 +5,4 @@ const char* fragment_shader_text = "#version 330 core\n"
 " \n"
 "}\0";
 
-Shader fragment_shader(fragment_shader_text);
+Shader fragment_shader(fragment_shader_text, GL_FRAGMENT_SHADER);

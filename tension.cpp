@@ -1,9 +1,8 @@
 #include "Force.hpp"
 
-double* act_tension(angle ang, double coeffictient) {
-	double* Force_vec;
-	/* calculate Force */
-	return Force_vec;
+double* act_tension(angle ang, double coefficient) {
+	double force_vec[3] = {coefficient*3.5, 0, 0};
+	return line_dist(vec_mult(uvec(ang), force_vec));
 };
 
-Force tension(act_tension, 1);
+Force tension(act_tension);

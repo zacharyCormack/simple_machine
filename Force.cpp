@@ -1,9 +1,7 @@
 #include "Force.hpp"
-#include "functions.hpp"
 
-Force::Force(double*(*equation)(angle, double), double str) {
+Force::Force(double*(*equation)(angle, double)) {
 	calc_Force = equation;
-	strength = str;
 	this_Force = forces_ptr.size();
 	forces_ptr.push_back(this);
 }

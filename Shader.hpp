@@ -4,8 +4,8 @@
 
 class Shader {
 private:
-	char* GLSL_code;
+	unsigned* ID;
 public:
 	unsigned get_GL_shader();
-	Shader(const char*);
+	Shader(const char*, unsigned);
 };

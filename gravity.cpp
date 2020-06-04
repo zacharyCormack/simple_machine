@@ -1,9 +1,8 @@
 #include "Force.hpp"
 
-double* act_gravity(angle ang, double coeffictient) {
-	double* Force_vec;
-	/* calculate Force */
-	return Force_vec;
+double* act_gravity(angle ang, double coefficient) {
+	double force_vec[3] = {0, 0, coefficient*9.807};
+	return force_vec;
 };
 
-Force gravity(act_gravity, 9.807);
+Force gravity(act_gravity);

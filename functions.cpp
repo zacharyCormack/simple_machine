@@ -8,6 +8,10 @@ line uvec(line vec) {
 
 }
 
+line uvec(angle vec) {
+
+}
+
 /*
  * mag[0] is magnitude in direction of vector, 
  * mag[1, 2] are perpendicular

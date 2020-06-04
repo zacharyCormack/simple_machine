@@ -5,7 +5,7 @@
 #include "fragment.cpp"
 #include "lift_geometry.cpp"
 #include "motor_geometry.cpp"
-#include "perspective_vector.cpp"
+#include "perspective_vertex.cpp"
 #include "prism_geometry.cpp"
 #include "rope_geometry.cpp"
 

@@ -5,4 +5,4 @@ const char* perspective_shader_text = "#version 330 core\n"
 " \n"
 "}\0";
 
-Shader perspective_shader(perspective_shader_text);
+Shader perspective_shader(perspective_shader_text, GL_VERTEX_SHADER);
