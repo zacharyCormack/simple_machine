@@ -11,7 +11,7 @@ A "Gravity coefficient" is just mass. A "friction coefficient" is the coefficien
 A `Component::Instance` represents an object, and has a `prism core`, and `line velocity`, representing it's motion.
 It also has a `Component* type` property, a pointer to it's parent class. It moves based on it's type's `react` function.
 ## Force
-The `Force` class has an interesting `double*(*equation)(angle, double)` property, but also a double* `exert(Component::Instance, Component::Instance)` method.
+The `Force` class has an interesting `double*(*equation)(angle, double)` property, but also a `double* exert(Component::Instance, Component::Instance)` method.
 `equation` is just the equation for the force.
 `exert` uses `equation` to calculate force, and then exerts the force on the objects.
 ## Use
