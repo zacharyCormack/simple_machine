@@ -8,7 +8,7 @@ line uvec(line vec) {
 
 }
 
-line uvec(angle vec) {
+line uvec(angle vecx, angle vecy) {
 
 }
 

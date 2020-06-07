@@ -1,4 +1,6 @@
 # simple_machine
+![LOGO](http://www.zacharycormack.net/wp-content/uploads/2019/01/Logo2-1-300x179.png "zacharycormack.net")
+
 A simple machine illustration framework built with OpenGL
 This C++ project uses classes to represent forces and components in the simple machine.
 Here are some explanations of the somewhat counterintuitive *but clever* ideas.
@@ -16,4 +18,6 @@ The `Force` class has an interesting `double*(*equation)(angle, double)` propert
 `exert` uses `equation` to calculate force, and then exerts the force on the objects.
 ## Use
 If you just want to use this to animate a simple machine, only edit the `main.cpp` file. It's where all every `Component::Instance` is created.
-Just by changing where the components are positioned, you can totally change the machine.
+Just by changing the components, you can change the shape of the machine. You can also change the colour palette set in the main file.
+## Notice
+This project is currently incomplete. That means that it is currently not usable, but can still be contributed to. It can still be worked on after completion.
