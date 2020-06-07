@@ -20,7 +20,11 @@ line vec_mult(line vec, double* mag) {
 
 }
 
-double* line_dist(line dist) {
+double* line_x_y_x(line dist) {
+	
+}
+
+double line_dist(line dist) {
 	
 }
 

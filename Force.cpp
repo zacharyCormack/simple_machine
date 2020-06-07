@@ -8,8 +8,8 @@ Force::Force(double*(*equation)(angle, double)) {
 
 double* Force::exert(Component::Instance actor_a, Component::Instance actor_b) {
 	double* Force_exerted = (*calc_Force)(measure(actor_a.core.core, actor_b.core.core), actor_a.type->coefficients[this_Force]);
-	actor_a.accelerate(line_dist(vec_mult(uvec(actor_a.core.core), Force_exerted)));
-	actor_b.accelerate(line_dist(vec_mult(uvec(actor_b.core.core), Force_exerted)));
+	actor_a.accelerate(line_x_y_x(vec_mult(uvec(actor_a.core.core), Force_exerted)));
+	actor_b.accelerate(line_x_y_x(vec_mult(uvec(actor_b.core.core), Force_exerted)));
 }
 
 Force::~Force() {

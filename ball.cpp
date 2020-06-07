@@ -15,8 +15,10 @@ void move_ball(Component::Instance* object) {
 void bind_ball_points(prism core) {
 	const unsigned short int size = 4;
 	float vertices[size*3] = {
-		core.core.x[0], core.core.y[0], core.core.z[0], line_dist(core.core)
-	};
+		core.core.x[0],
+		core.core.y[0],
+		core.core.z[0],
+		(float)line_dist(core.core)};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float), &vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 13, (void*)0);
 	glEnableVertexAttribArray(0);

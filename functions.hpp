@@ -5,6 +5,7 @@ angle measure(line, line);
 line uvec(line);
 line uvec(angle, angle);
 line vec_mult(line, double*);
-double* line_dist(line);
+double* line_x_y_x(line);
+double line_dist(line);
 void framebuffer_size_callback(GLFWwindow*, int, int);
 void processInput(GLFWwindow*);
