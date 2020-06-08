@@ -7,9 +7,11 @@ double ball_coefficients[] = {1.0, 1.0, 1.0, 0.0, 0.0};
 
 void move_ball(Component::Instance* object) {
 	object->velocity.x[0] += object->velocity.x[1];
-	object->velocity.y[0] += object->velocity.z[1];
+	object->core.core.x[0] += object->velocity.x[1];
+	object->velocity.y[0] += object->velocity.y[1];
+	object->core.core.y[0] += object->velocity.y[1];
 	object->velocity.z[0] += object->velocity.z[1];
-	/* do stuff to core if necessary */
+	object->core.core.z[0] += object->velocity.z[1];
 };
 
 void bind_ball_points(prism core) {
