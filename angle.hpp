@@ -3,5 +3,4 @@
 struct angle {
 	char portion;
 };
-//'.' is flat
-//interpreted by Shaders.
+//see ang_to_num and num_to_ang functions.

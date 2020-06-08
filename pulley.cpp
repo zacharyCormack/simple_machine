@@ -10,8 +10,7 @@ void move_pulley(Component::Instance* object) {
 	object->velocity.y[0] += object->velocity.y[1]/0.4;
 	object->velocity.z[0] += object->velocity.z[1]/0.4;
 	object->core.thickness[1] -= object->velocity.z[1]/0.4;
-	object->core.rotation.portion =
-	(char)((float)(object->core.rotation.portion) -
+	object->core.rotation = num_to_ang(ang_to_num(object->core.rotation) -
 	sqrt((object->velocity.x[1]) * (object->velocity.x[1]) + (object->velocity.y[1]) * (object->velocity.y[1])) / 0.4);
 };
 
@@ -22,7 +21,7 @@ void bind_pulley_points(prism core) {
 		core.core.y[0],
 		core.core.z[0],
 		core.thickness[1],
-		(float)(core.rotation.portion)
+		ang_to_num(core.rotation)
 	};
 	glBufferData(GL_ARRAY_BUFFER, sizeof(float), &vertices, GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 13, (void*)0);
