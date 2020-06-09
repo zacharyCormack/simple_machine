@@ -34,6 +34,9 @@ The `Force` class has an interesting `double*(*equation)(angle, double)` propert
 The `equation` is just the equation for the force.
 The `exert` method uses the `equation` to calculate force, and then exerts the force on the objects.
 
+## Colours
+In the `Machine` class, there is a colour scheme property. All `void(*bind_vertices)(prism)` functions have their final input as an integer representing which colour in the palette is used. This way, changing the colour palette of a machine is *very easy*, and the same component types can be used in different machines with different palettes.
+
 ## Use
 If you just want to use this to animate a simple machine, only edit the `main.cpp` file. It's where all every `Component::Instance` is created.
 Just by changing the components, you can change the shape of the machine. You can also change the colour palette set in the main file.

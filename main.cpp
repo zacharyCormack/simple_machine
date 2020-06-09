@@ -23,7 +23,7 @@ int main() {
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	/* make objects */
-	Machine machine((double [3]){0, 0, 0});
+	Machine machine((double [3]){0, 0, 0}, (std::vector<float>){0});
 	/* bind objects */
 	bool window_should_close = false;
 	while(!glfwWindowShouldClose(window)) {
