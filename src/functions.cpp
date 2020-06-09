@@ -2,10 +2,10 @@
 #include <cmath>
 
 angle measure(line a, line b) {
-	angle angle_a_z = {num_to_ang(atan((a.z[1]-a.z[0]) / sqrt(a.x[1]-a.x[0])*(a.x[1]-a.x[0]) + (a.y[1]-a.y[0])*(a.y[1]-a.y[0])))};
-	angle angle_a = {num_to_ang(atan(sqrt((a.y[1]-a.y[0])*(a.y[1]-a.y[0]) + (a.z[1]-a.z[0])*(a.z[1]-a.z[0])) / (a.x[1]-a.x[0])))};
-	angle angle_b_z = {num_to_ang(atan((b.z[1]-b.z[0]) / sqrt(b.x[1]-b.x[0])*(b.x[1]-b.x[0]) + (b.y[1]-b.y[0])*(b.y[1]-b.y[0])))};
-	angle angle_b = {num_to_ang(atan(sqrt((b.y[1]-b.y[0])*(b.y[1]-a.y[0]) + (b.z[1]-b.z[0])*(b.z[1]-b.z[0])) / (b.x[1]-b.x[0])))};
+	angle angle_a_z = num_to_ang(atan((a.z[1]-a.z[0]) / sqrt(a.x[1]-a.x[0])*(a.x[1]-a.x[0]) + (a.y[1]-a.y[0])*(a.y[1]-a.y[0])));
+	angle angle_a = num_to_ang(atan(sqrt((a.y[1]-a.y[0])*(a.y[1]-a.y[0]) + (a.z[1]-a.z[0])*(a.z[1]-a.z[0])) / (a.x[1]-a.x[0])));
+	angle angle_b_z = num_to_ang(atan((b.z[1]-b.z[0]) / sqrt(b.x[1]-b.x[0])*(b.x[1]-b.x[0]) + (b.y[1]-b.y[0])*(b.y[1]-b.y[0])));
+	angle angle_b = num_to_ang(atan(sqrt((b.y[1]-b.y[0])*(b.y[1]-a.y[0]) + (b.z[1]-b.z[0])*(b.z[1]-b.z[0])) / (b.x[1]-b.x[0])));
 	return num_to_ang(ang_to_num(angle_a) - acos(sqrt(
 		cos(ang_to_num(angle_b)) * cos(ang_to_num(angle_b)) +
 		cos(ang_to_num(angle_a_z)+ang_to_num(angle_b_z)) * cos(ang_to_num(angle_a_z)+ang_to_num(angle_b_z))

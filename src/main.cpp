@@ -23,7 +23,12 @@ int main() {
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	/* make objects */
-	Machine machine((double [3]){0, 0, 0}, (std::vector<float>){0});
+	std::vector<float> colour_palette;
+	colour_palette.push_back(0xFF0000FF);
+	colour_palette.push_back(0x964B00FF);
+	colour_palette.push_back(0x2F2F2FFF);
+	colour_palette.push_back(0xD2B48CFF);
+	Machine machine((double [3]){0, 0, 0}, colour_palette);
 	/* bind objects */
 	bool window_should_close = false;
 	while(!glfwWindowShouldClose(window)) {
