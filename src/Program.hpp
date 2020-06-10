@@ -2,7 +2,8 @@
 #include "Shader.hpp"
 #include <vector>
 
-class Program {
+class Program
+{
 	void activate();
 	int type;
 	int ID;

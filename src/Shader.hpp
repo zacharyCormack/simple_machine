@@ -2,7 +2,8 @@
 #include <OpenGL/OpenGL.h>
 #include <GLFW/glfw3.h>
 
-class Shader {
+class Shader
+{
 private:
 	unsigned* ID;
 public:

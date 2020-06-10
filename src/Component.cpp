@@ -1,6 +1,7 @@
 #include "Component.hpp"
 #include "functions.hpp"
-Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(Component::Instance*), void(*bind_vertices)(prism), unsigned short* indices) {
+Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(Component::Instance*), void(*bind_vertices)(prism), unsigned short* indices)
+{
 	coefficients = coefficients_to_bind;
 	drawer = &draw;
 	move = react;
@@ -10,9 +11,9 @@ Component::Component(Program draw, double coefficients_to_bind[5], void(*react)(
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 13, (void*)12);
 }
 
-Component::Instance::Instance(prism base, short variation, Component* Instance_of) {
+Component::Instance::Instance(prism base, Component* Instance_of)
+{
 	core = base;
-	variation_val = variation;
 	type = Instance_of;
 	velocity.x[0] = (core.core.x[0] + core.core.x[1]) / 2;
 	velocity.y[0] = (core.core.y[0] + core.core.y[1]) / 2;
@@ -24,13 +25,15 @@ Component::Instance::Instance(prism base, short variation, Component* Instance_o
 	glGenBuffers(1, &VAO);
 }
 
-void Component::Instance::accelerate(double* delta_v) {
+void Component::Instance::accelerate(double* delta_v)
+{
 	velocity.x[1] += delta_v[0];
 	velocity.y[1] += delta_v[1];
 	velocity.z[1] += delta_v[2];
 }
 
-void Component::Instance::iterate() {
+void Component::Instance::iterate()
+{
 	(*(type->move))(this);
 	(*(type->bind_points))(core);
 	type->drawer->draw(VAO, VBO, type->EBO);

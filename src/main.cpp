@@ -3,9 +3,12 @@
 #include "shaders.hpp"
 #include "Machine.hpp"
 #include "functions.hpp"
+#include <chrono>
 
-int main() {
-	/* initiate OpenGL */
+int main()
+{
+	auto start_time = std::chrono::high_resolution_clock::now();
+	auto current_time = std::chrono::high_resolution_clock::now();
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -14,7 +17,7 @@ int main() {
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	#endif
 	GLFWwindow* window = glfwCreateWindow(800, 600, "MACHINE", NULL, NULL);
-	if (window == NULL)
+	if(window == NULL)
 	{
 		glfwTerminate();
 		return -1;
@@ -23,7 +26,7 @@ int main() {
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 	/* make objects */
-	std::vector<float> colour_palette;
+	std::vector<int> colour_palette;
 	colour_palette.push_back(0xFF0000FF);
 	colour_palette.push_back(0x964B00FF);
 	colour_palette.push_back(0x2F2F2FFF);
@@ -31,11 +34,14 @@ int main() {
 	Machine machine((double [3]){0, 0, 0}, colour_palette);
 	/* bind objects */
 	bool window_should_close = false;
-	while(!glfwWindowShouldClose(window)) {
+	while(!glfwWindowShouldClose(window))
+{
+		process_input(window);
+
 		machine.iterate();
-		/* potentially, pan */
+		pan(std::chrono::duration_cast<std::chrono::duration<float> >(current_time - start_time).count());
 		machine.draw();
-		/* check if window should close */
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}

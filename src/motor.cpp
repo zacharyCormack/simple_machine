@@ -6,8 +6,9 @@ double motor_coefficients[] = {0.0, 0.0, 0.0, 0.0, 1.0};
 
 void move_motor(Component::Instance* object) {/* do nothing */};
 
-void bind_motor_points(prism core) {
-	const unsigned short int size = 0;
+void bind_motor_points(prism core)
+{
+	const unsigned short size = 0;
 	/* make size something other than 0 */
 	float vertices[size];
 	/* decide points somehow */
@@ -16,7 +17,8 @@ void bind_motor_points(prism core) {
 	glEnableVertexAttribArray(0);
 }
 
-unsigned short motor_indices[] = {
+unsigned short motor_indices[] =
+{
 	/* put indices here */
 };
 

@@ -1,6 +1,7 @@
 #include "Shader.hpp"
 
-Shader::Shader(const char* text, unsigned type) {
+Shader::Shader(const char* text, unsigned type)
+{
 	unsigned shader;
 	shader = glCreateShader(type);
 	glShaderSource(shader, 1, &text, NULL);
@@ -8,6 +9,7 @@ Shader::Shader(const char* text, unsigned type) {
 	ID = &shader;
 }
 
-unsigned Shader::get_GL_shader() {
+unsigned Shader::get_GL_shader()
+{
 	return *ID;
 }

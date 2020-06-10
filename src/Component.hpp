@@ -3,10 +3,11 @@
 #include "Program.hpp"
 #include <OpenGL/OpenGL.h>
 
-class Component {
+class Component
+{
 public:
-	class Instance {
-		short variation_val;
+	class Instance
+	{
 		unsigned VBO;
 		unsigned VAO;
 	public:
@@ -15,7 +16,7 @@ public:
 		line velocity;
 		void iterate();
 		void accelerate(double*);
-		Instance(prism, short, Component*);
+		Instance(prism, Component*);
 	};
 	double* coefficients;
 	Component(Program, double [5], void(*)(Instance*), void(*)(prism), unsigned short*);
