@@ -31,7 +31,7 @@ void bind_ball_points(prism core)
 
 unsigned short ball_indices[] =
 {
-	0, 1, 2, 3
+	3, 0, 1, 2
 };
 
 Component ball(draw_ball, ball_coefficients, &move_ball, &bind_ball_points, ball_indices);

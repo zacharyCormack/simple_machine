@@ -17,12 +17,15 @@ void move_rope(Component::Instance* object)
 
 void bind_rope_points(prism core)
 {
-	const unsigned short size = 6;
+	const unsigned short size = 9;
 	float vertices[size] =
-{
+	{
 		core.core.x[0],
 		core.core.y[0],
 		core.core.z[0],
+		core.core.x[1],
+		core.core.y[1],
+		core.core.z[1],
 		core.thickness[1],
 		ang_to_num(core.rotation),
 		3
@@ -34,9 +37,10 @@ void bind_rope_points(prism core)
 
 unsigned short rope_indices[] =
 {
-	0, 1, 2,
-	3, 2, 4,
-	0, 1, 5
+	8,
+	0, 1, 2, 3, 4, 5,
+	6, 7,
+	0, 1
 };
 
 Component rope(draw_rope, rope_coefficients, &move_rope, &bind_rope_points, rope_indices);

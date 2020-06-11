@@ -1,7 +1,8 @@
 #include "Shader.hpp"
 
 const char* lift_shader_text = "#version 330 core\n"
-"int main() {\n"
+"void main()\n\
+{\n"
 " \n"
 "}\0";
 

@@ -25,6 +25,10 @@ int main()
 	glfwMakeContextCurrent(window);
 	glViewport(0, 0, 800, 600);
 	glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 13, (void*)0);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 13, (void*)4);
+	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 13, (void*)16);
+	glVertexAttribPointer(3, 3, GL_FLOAT, GL_FALSE, 13, (void*)28);
 	/* make objects */
 	std::vector<int> colour_palette;
 	colour_palette.push_back(0xFF0000FF);
