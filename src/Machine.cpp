@@ -15,15 +15,16 @@ void Machine::add(Component::Instance new_component)
 
 void Machine::iterate()
 {
-	for(unsigned short i = 0; i < components.size(); i++)
+	for (unsigned short i = 0; i < components.size(); i++)
 	{
-		for(unsigned short j = 0; j < components.size(); j++)
+		prism core_i = components[i].core;
+		for (unsigned short j = 0; j < components.size(); j++)
 		{
-			if(i!=j)
+			if (i!=j)
 			{
-				// detect collision
-				// actor_a.accelerate(line_x_y_z(vec_mult(uvec(actor_a.core.core), force_exerted)));
-				// actor_b.accelerate(line_x_y_z(vec_mult(uvec(actor_b.core.core), force_exerted)));
+				double* force_to_push = collision_detect_and_react(components[i], components[j]);
+				components[i].accelerate(force_to_push);
+				components[j].accelerate(force_to_push);
 			}
 		}
 	}
@@ -31,8 +32,8 @@ void Machine::iterate()
 
 void Machine::draw()
 {
-	for(unsigned short i = 0; i < components.size(); i++)
-{
+	for (unsigned short i = 0; i < components.size(); i++)
+	{
 		/* draw components */
 	}
 }

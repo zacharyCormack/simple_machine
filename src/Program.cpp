@@ -4,7 +4,7 @@ Program::Program(Shader* shaders, int draw_type)
 {
 	type = draw_type;
 	unsigned program_ID = glCreateProgram();
-	for(unsigned short i = 0; i < sizeof(shaders)/sizeof(Shader); i++)
+	for (unsigned short i = 0; i < sizeof(shaders)/sizeof(Shader); i++)
 {
 		glAttachShader(program_ID, shaders[i].get_GL_shader());
 	}

@@ -6,10 +6,10 @@
 class Force
 {
 	double*(*calc_force)(angle, double, double);
-	static std::vector<Force*> forces_ptr;
 	int this_force;
 public:
-	double* exert(Component::Instance, Component::Instance);
+	static std::vector<Force*> forces_ptr;
+	double* exert(Component::Instance, Component::Instance, angle);
 	void bind_object(Component::Instance*, Component, short*, double);
 	Force(double*(*)(angle, double, double));
 	~Force();

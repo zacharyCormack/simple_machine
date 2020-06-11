@@ -14,3 +14,4 @@ inline double line_dist(line);
 inline void framebuffer_size_callback(GLFWwindow*, int, int);
 inline void process_input(GLFWwindow*);
 inline void pan(float);
+inline double* collision_detect_and_react(Component::Instance, Component::Instance);

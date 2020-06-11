@@ -17,7 +17,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	#endif
 	GLFWwindow* window = glfwCreateWindow(800, 600, "MACHINE", NULL, NULL);
-	if(window == NULL)
+	if (window == NULL)
 	{
 		glfwTerminate();
 		return -1;
@@ -34,7 +34,7 @@ int main()
 	Machine machine((double [3]){0, 0, 0}, colour_palette);
 	/* bind objects */
 	bool window_should_close = false;
-	while(!glfwWindowShouldClose(window))
+	while (!glfwWindowShouldClose(window))
 {
 		process_input(window);
 
