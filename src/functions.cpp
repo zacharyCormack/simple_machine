@@ -127,90 +127,81 @@ void pan(float time)
 	/* optionally, change perspective point */
 }
 
+double dot_product(double* a, double* b)
+{
+	double sum = 0;
+	for (unsigned short i = 0; i < (sizeof(a) > sizeof(b) ? sizeof(b) : sizeof(a))/sizeof(double); i++) {
+		sum += a[i]*b[i];
+	}
+	return sum;
+}
 
 double* collision_detect_and_react(Component::Instance actor_a, Component::Instance actor_b)
 {
-	line crosses[] = {
-		(line)
-		{
-			{actor_a.core.core.x[0], actor_b.core.core.x[0]},
-			{actor_a.core.core.y[0], actor_b.core.core.y[0]},
-			{actor_a.core.core.z[0], actor_b.core.core.z[0]}
-		},
-		(line)
-		{
-			{actor_a.core.core.x[1], actor_b.core.core.x[0]},
-			{actor_a.core.core.y[1], actor_b.core.core.y[0]},
-			{actor_a.core.core.z[1], actor_b.core.core.z[0]}
-		},
-		(line)
-		{
-			{actor_a.core.core.x[0], actor_b.core.core.x[1]},
-			{actor_a.core.core.y[0], actor_b.core.core.y[1]},
-			{actor_a.core.core.z[0], actor_b.core.core.z[1]}
-		},
-		(line)
-		{
-			{actor_a.core.core.x[1], actor_b.core.core.x[1]},
-			{actor_a.core.core.y[1], actor_b.core.core.y[1]},
-			{actor_a.core.core.z[1], actor_b.core.core.z[1]}
-		}
+	unsigned short k = 0;
+	double P[] = {actor_a.core.core.x[0], actor_a.core.core.y[0], actor_a.core.core.z[0]};
+	double Q[] = {actor_b.core.core.x[0], actor_b.core.core.y[0], actor_b.core.core.z[0]};
+	double R[] = {Q[0]-P[0], Q[1]-P[1], Q[2]-P[2]};
+	double* U = line_x_y_z(vec_mult(actor_a.core.core, (double []){1/line_dist(actor_a.core.core), 0, 0}));
+	double* V = line_x_y_z(vec_mult(actor_b.core.core, (double []){1/line_dist(actor_b.core.core), 0, 0}));
+	double a, b, c, d, e, f, s, t;
+	a =  dot_product(U, U);
+	b = -dot_product(U, V);
+	c =  dot_product(U, R);
+	d =  dot_product(U, V);
+	e = -dot_product(V, V);
+	f =  dot_product(V, R);
+	s =  (f*b-e*c)/(d*b-e*a);
+	t =  (f*a-d*c)/(e*a-d*b);
+	line cross =
+	{
+		{P[0]+U[0]*s, Q[0]+V[0]*t},
+		{P[1]+U[1]*s, Q[1]+V[1]*t},
+		{P[2]+U[2]*s, Q[2]+V[2]*t}
 	};
 	line straight = uvec(num_to_ang(0), num_to_ang(0));
-	angle angs[4][3] = {
-		{measure(actor_a.core.core, crosses[0]), measure(actor_b.core.core, crosses[0]), measure(crosses[0], straight)},
-		{measure(actor_a.core.core, crosses[1]), measure(actor_b.core.core, crosses[0]), measure(crosses[0], straight)},
-		{measure(actor_a.core.core, crosses[2]), measure(actor_b.core.core, crosses[0]), measure(crosses[0], straight)},
-		{measure(actor_a.core.core, crosses[3]), measure(actor_b.core.core, crosses[0]), measure(crosses[0], straight)}
-	};
-	unsigned short k = 0;
-	while (k++ < 4)
-	{
-		double this_ang_i = ang_to_num(angs[k][2]) - ang_to_num(actor_a.core.rotation) + M_PI/2;
-		b:
-		this_ang_i -= M_PI;
-		if (this_ang_i > M_PI)
-		{
-			goto b;
-		}
-		double this_i =
-		(
-			this_ang_i > M_PI
-			?
-			actor_a.core.thickness[0]*(1+tan(this_ang_i-M_PI))
-			:
-			actor_a.core.thickness[1]*(1+tan(this_ang_i))
-		);
+	angle ang = measure(straight, cross);
 
-		double this_ang_j = ang_to_num(angs[k][2]) - ang_to_num(actor_b.core.rotation) + M_PI/2;
-		c:
-		this_ang_j -= M_PI;
-		if (this_ang_j > M_PI)
-		{
-			goto c;
-		}
-		double this_j =
-		(
-			this_ang_j > M_PI
-			?
-			actor_b.core.thickness[0]*(1+tan(this_ang_j-M_PI))
-			:
-			actor_b.core.thickness[1]*(1+tan(this_ang_j))
-		);
-		if
-		(
-			sqrt(this_i*this_i + this_i*this_i/tan(ang_to_num(angs[k][0]))/tan(ang_to_num(angs[k][0])))
-			+
-			sqrt(this_j*this_j + this_j*this_j/tan(ang_to_num(angs[k][1]))/tan(ang_to_num(angs[k][1])))
-			>
-			line_dist(crosses[k])
-		)
-		{
-			break;
-		}
+	double ang_a = ang_to_num(ang) - ang_to_num(actor_a.core.rotation) + M_PI/2;
+	b:
+	ang_a -= M_PI;
+	if (ang_a > M_PI)
+	{
+		goto b;
 	}
-	double* force_exerted = 0;
-	if (k < 4)
+	double line_a =
+	(
+		ang_a > M_PI
+		?
+		actor_a.core.thickness[0]*(1+tan(ang_a-M_PI))
+		:
+		actor_a.core.thickness[1]*(1+tan(ang_a))
+	);
+
+	double ang_j = ang_to_num(ang) - ang_to_num(actor_b.core.rotation) + M_PI/2;
+	c:
+	ang_j -= M_PI;
+	if (ang_j > M_PI)
+	{
+		goto c;
+	}
+	double line_b =
+	(
+		ang_j > M_PI
+		?
+		actor_b.core.thickness[0]*(1+tan(ang_j-M_PI))
+		:
+		actor_b.core.thickness[1]*(1+tan(ang_j))
+	);
+	
+	if
+	(
+		sqrt(line_a*line_a + line_a*line_a/tan(ang_to_num(measure(actor_a.core.core, cross)))/tan(ang_to_num(measure(actor_a.core.core, cross))))
+		+
+		sqrt(line_b*line_b + line_b*line_b/tan(ang_to_num(measure(actor_b.core.core, cross)))/tan(ang_to_num(measure(actor_b.core.core, cross))))
+		>
+		line_dist(cross)
+	)
 	{
 		std::vector<double*> forces_acting;
 		line exertion_sum =
@@ -221,7 +212,7 @@ double* collision_detect_and_react(Component::Instance actor_a, Component::Insta
 		};
 		for (unsigned short l = 0; l < Force::forces_ptr.size(); l++)
 		{
-			double* this_force = Force::forces_ptr[l]->exert(actor_a, actor_b, angs[k][2]);
+			double* this_force = Force::forces_ptr[l]->exert(actor_a, actor_b, ang);
 			forces_acting.push_back(this_force);
 			exertion_sum.x[1] += this_force[0];
 			exertion_sum.y[1] += this_force[1];
@@ -256,7 +247,7 @@ double* collision_detect_and_react(Component::Instance actor_a, Component::Insta
 			}
 			forces_acting.pop_back();
 		}
-		return line_x_y_z(vec_mult(exertion_sum, line_x_y_z(crosses[k])));
+		return line_x_y_z(vec_mult(exertion_sum, line_x_y_z(cross)));
 	}
 	return (double []){0, 0, 0};
 }

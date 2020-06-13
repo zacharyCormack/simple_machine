@@ -39,6 +39,15 @@ In the `Machine` class, there is a colour scheme property.
 All `void(*bind_vertices)(prism)` functions have their first input as an integer representing which colour in the palette is used.
 This way, changing the colour palette of a machine is *very easy*, and the same component types can be used in different machines with different palettes.
 
+## Collision Detection
+This program uses a *prism-based* collision detection algorithm.
+The collision detection algorithm is in the `collision_detect_and_react(Component::Instance, Component::Instance)` function in the file `functions.cpp`.
+By finding the *shortest distance* between two *rectangular prisms*, collision detection can be done **perfectly**.
+Some complex mathematics is required to find this, and figure out where said shortest line exits the prism.
+Despite this, the fundamental of the algorithm is actually rather straightforward:
+
+*If there is a line that enters one prism before or at the same time as it exits the other, the prisms have collided.*
+
 ## Use
 If you just want to use this to animate a simple machine, only edit the `main.cpp` file. It's where all every `Component::Instance` is created.
 Just by changing the components, you can change the shape of the machine. You can also change the colour palette set in the main file.
